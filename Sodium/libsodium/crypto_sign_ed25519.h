@@ -68,6 +68,9 @@ SODIUM_EXPORT
 int crypto_sign_ed25519_keypair(unsigned char *pk, unsigned char *sk);
 
 SODIUM_EXPORT
+int crypto_derive_public_from_secret_impl(unsigned char *sk, unsigned char* pk);
+
+SODIUM_EXPORT
 int crypto_sign_ed25519_seed_keypair(unsigned char *pk, unsigned char *sk,
                                      const unsigned char *seed);
 

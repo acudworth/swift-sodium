@@ -69,6 +69,30 @@ public class Sign {
     }
 
     /**
+     Derives the public key from a given secret key.
+     
+     - Parameter secret: The value from which to derive the public key.
+     
+     - Returns: A key pair containing the secret key and public key.
+    */
+    public func keyPair(secret: Data) -> KeyPair? {
+        var secret = secret
+        if secret.count != 32 {
+            return nil
+        }
+        var pk = Data(count: PublicKeyBytes)
+        let result = secret.withUnsafeMutableBytes { skPtr in
+            pk.withUnsafeMutableBytes { pkPtr in
+                crypto_derive_public_from_secret(skPtr, pkPtr)
+            }
+        }
+        if result != 0 {
+            return nil
+        }
+        return KeyPair(publicKey: pk, secretKey: secret)
+    }
+    
+    /**
      Signs a message with the sender's secret key
 
      - Parameter message: The message to encrypt.
