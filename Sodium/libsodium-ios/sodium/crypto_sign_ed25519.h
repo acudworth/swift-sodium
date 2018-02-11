@@ -31,7 +31,7 @@ size_t crypto_sign_ed25519_seedbytes(void);
 SODIUM_EXPORT
 size_t crypto_sign_ed25519_publickeybytes(void);
 
-#define crypto_sign_ed25519_SECRETKEYBYTES (32U + 32U)
+#define crypto_sign_ed25519_SECRETKEYBYTES (32U)
 SODIUM_EXPORT
 size_t crypto_sign_ed25519_secretkeybytes(void);
 
